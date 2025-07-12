@@ -1,0 +1,28 @@
+
+section {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+
+.elemento1 {
+  width: 100px;
+  height: 100px;
+  border: 10px solid black;
+  background-color: black;
+}
+.elemento2 {
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border: 10px solid red ;
+  background-color: aqua;
+
+}
+.elemento3 {
+  width: 100px;
+  height: 100px;
+  border: 10px solid blue;
+  background-color: brown;
+}

@@ -1,28 +1,38 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-y: auto;
+}
 
-section {
+#seccion1 {
+  position: relative;
+  background-image: url('./multimedia/imagenes/fondo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  overflow-y: auto;
+  height: 100vh; /* para que tenga scroll propio */
+}
+
+
+#navegador {
+  position: sticky;
+  top: 0;
+  background-color: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1000;
+  height: 100px;
   display: flex;
-  flex-direction: row;
-  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
 }
 
-
-.elemento1 {
-  width: 100px;
-  height: 100px;
-  border: 10px solid black;
-  background-color: black;
-}
-.elemento2 {
-  justify-content: center;
-  width: 100px;
-  height: 100px;
-  border: 10px solid red ;
-  background-color: aqua;
-
-}
-.elemento3 {
-  width: 100px;
-  height: 100px;
-  border: 10px solid blue;
-  background-color: brown;
+.menu a {
+  color: black;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
 }

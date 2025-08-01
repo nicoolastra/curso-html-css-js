@@ -1,18 +1,17 @@
-console.log('scrollY:', window.scrollY);
+// PAGINA 1: NAVEGADOR FIJO AL HACER SCROLL
 
 window.addEventListener('scroll', () => {
   
   const nav = document.getElementById('navegador');
-  console.log('scrollY:', window.scrollY);
   if (window.scrollY > 50) {
     nav.classList.add('scrolled');
   } else {
     nav.classList.remove('scrolled');
   }
 });
-window.addEventListener('scroll', () => { // Para verificar el scroll de la ventana
-  console.log('window scrollY:', window.scrollY); // Muestra la posición del scroll de la ventana
-});
+
+// PAGINA 1: ANIMACIONES DE LAS TARJETAS
+
 
 
 // PAGINA 2: ANIMACIONES DE LAS TARJETAS
@@ -27,8 +26,8 @@ window.addEventListener("scroll", () => {
 });
 const tarjetas = document.querySelectorAll('#contenedorTarjetas > div');
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+const observer = new IntersectionObserver((entries) => { // Creamos un observador de intersección para detectar cuando las tarjetas entran en el viewport
+  entries.forEach(entry => { // Iteramos sobre cada entrada del observador
     console.log('Intersección detectada:', entry.target);
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
@@ -36,11 +35,10 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, {
-  threshold: 1
+  threshold: 0.5,
+  
 });
-
-
-tarjetas.forEach(tarjeta => observer.observe(tarjeta));
+tarjetas.forEach(tarjeta => observer.observe(tarjeta)); // Observador para las tarjetas. Tarjeta al final significa que la tarjeta se ha cargado y se ha añadido al DOM
 
 // PAGINA 2: BOTONES DEL VIDEO
 

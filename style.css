@@ -204,15 +204,15 @@ h2 {
 #contenedorTarjetas {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
-  gap: 100px;
-  margin-top: 100px;;
+  gap: 200px;
+  margin-top: 100px;
   align-items: start;
   height: 2000px;
   perspective: 800px; /* Añade perspectiva para el efecto 3D */
  }
 
 #contenedorTarjetas img {
-  width: 50%;
+  width: 70%;
   place-self: center;
 }
 
@@ -243,8 +243,9 @@ h2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
+  text-align: center;
   opacity: 0;
-  transform: scale(1) rotateY(180deg);
+  transform: scale(1) rotateY(-180deg);
   transition: transform 3s ease, opacity 0.7s ease;
   transform-style: preserve-3d;
 }
@@ -258,7 +259,7 @@ h2 {
   grid-template-columns: 1fr 1fr;
   width: 100%;
   opacity: 0;
-  transform: scale(1) rotateY(-90deg);
+  transform: scale(1) rotateY(-180deg);
   transition: transform 3s ease, opacity 0.7s ease;
   transform-style: preserve-3d;
 }
@@ -312,11 +313,11 @@ h3 {
   margin-top: auto;
   padding: 5px;
   background-color: #2f3645;
-  width: 50%;
+  width: 40%;
 }
 #video {
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
   aspect-ratio: 16/9;
   display: block;
 }

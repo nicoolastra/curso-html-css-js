@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    <title>historia</title>
+    <title>JUGUEMOS</title>
 </head>
 <body>
+   <section id="seccion3">
     <nav id="navegador">
-        <section class="seccion3">
-            <nav class="navegacion">
         <div class="caratula">
-        <svg><a href="./index.html"> 
+            
+        <svg> 
+         <a href="./index.html">    
         <rect x="45" y="5" width="80" height="50" fill="#767d81de"
          stroke="#2f3645" stroke-width="2"></rect>
          <rect x="50" y="10" width="70" height="40" fill="#000000"
@@ -32,6 +33,7 @@
         stroke-width="3" class="cod"></line>
         <line class="lineas" x1="55" y1="38" x2="115" y2="38" stroke="transparent" 
         stroke-width="3" class="cod"></line></a>
+        
     </svg> </div>
       
         <div class="menu">
@@ -39,7 +41,34 @@
             <a href="./juguemos.html">JUGUEMOS</a>
         </div>
     </nav>
-        </section>
-    </nav>
+    <main>
+        <h1 class="titulo">JUGUEMOS UN POCO</h1></main>
+
+
+
+       <h2>Armemos el rompecabezas y veamos que imagen se forma</h2>
+  <section class="juego">
+    <div id="contenedorSuperior">
+      <img src="./multimedia/imagenes/Rompe1.png" alt="imagen 1" id="imagen1">
+    <div class="contenedorCajas">
+      <div class="zona-soltar" id="zona1"><p>arrastre y suelte la imagen aqui</p></div>
+      <div class="zona-soltar" id="zona2"><p>arrastre y suelte la imagen aqui</p></div>
+      <div class="zona-soltar" id="zona3"><p>arrastre y suelte la imagen aqui</p></div></div>
+      <!-- Mensaje oculto por defecto -->
+      <div id="mensajeFinal" style="display: none;">
+        <h2>¡Felicitaciones! Completaste el rompecabezas 🎉</h2>
+        <div id="mensajeFinal" style="display: none;"></div>
+
+      </div>  
+    <img src="./multimedia/imagenes/Rompe2.png" alt="imagen 2" id="imagen2">
+    </div>
+    <div id="contenedorInferior">
+      <img src="./multimedia/imagenes/Rompe3.png" alt="imagen 3" id="imagen3">
+    </div>
+    <button class="reiniciar" style="display: none;"><a href="./juguemos.html">Reiniciar</a></button>
+  </section>
+
+
+<script src="./script.js"></script>
 </body>
 </html>

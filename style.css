@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 body, html {
     margin: 0;
     padding: 0;
@@ -5,8 +6,8 @@ body, html {
     min-height: 100vh;
     overflow-x: hidden; /* Evita el scroll horizontal */
     overflow-y: auto; /* Permite el scroll vertical */
-    outline: 3px solid red;
-   
+    font-family: "Raleway", Arial, sans-serif; /* Fuente por defecto */
+    
 }
 a {
   color: inherit;
@@ -16,27 +17,7 @@ a {
   position: relative;
   background-image: url('./multimedia/imagenes/fondo.jpg');
   background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; 
-  height: auto;
-  min-height: 100vh;
- overflow: visible;
-  outline: 2px solid blue;
- 
-
 }
-
-/* CSS */
-#navegador.scrolled {
-  background-color: #ffffff;
-  transition: ease 2s;
-}
-
-#navegador.scrolled .menu a {
-  color: #000000;
-  text-shadow: none;
-}
-
 #navegador {
   position: fixed; 
   top: 0;
@@ -52,6 +33,15 @@ a {
   padding: 0 20px;
 }
 
+#navegador.scrolled {
+  background-color: #ffffff;
+  transition: ease 2s;
+}
+
+#navegador.scrolled .menu a {
+  color: #000000;
+  text-shadow: none;
+}
 
 svg {
   width: 140px; height: 90px; animation: aparecer 5s ease;
@@ -72,7 +62,7 @@ svg {
     text-decoration: none;
     margin-left: 30px;
     font-size: 1.3rem;
-    font-weight: bold;
+    font-weight: bold; /* Aumenta el peso de la fuente */
     text-shadow: 2px 2px 4px #000;
     letter-spacing: 1px;
     transition: color 0.2s;
@@ -86,43 +76,32 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Ocupa toda la altura de la ventana */
+  height: 100vh; 
 }
-
-
 .titulo {
-    color: #fff;
-    font-size: 4vw;
     text-align: center;
-    text-shadow: 2px 2px 8px #222, 0 0 10px #000;
-    font-family: "Raleway", Arial, sans-serif;
-    font-weight: bold;
-    margin: 0;
-    letter-spacing: 2px;
     position: relative;
     z-index: 2;
 }
-.titulo2 {
-  padding: 100px 100px;;
-  text-align: center;
-  /* agrandar el texto */
-  font-size: 3rem;
-  color: black;
-  text-shadow: 2px 2px 4px #000;
-  font-family: "Raleway", Arial, sans-serif;
+h1 {
+  font-weight: 300;
+  font-size: calc(3em + 18px);
+  color: #eeeeee;
+  text-shadow: 2px 2px #808080, 6px 6px black;
 }
-/* Asegura que .titulo3 esté por encima del ::before de #seccion2 */
-.titulo3 {
-  font-weight: 400;
-    font-size: calc(3em + 18px);
-    color: #eeeeee;
-    text-shadow: 2px 2px #808080, 6px 6px black;
+.titulo2 {
+  text-align: center;
   position: relative;
   z-index: 2;
-  text-align: center;
-  z-index: 10;
-
 }
+h2 {
+  font-weight: 400;
+  font-size: calc(2em + 18px);
+  text-align: center;
+  color: #2f3645;
+  text-shadow: 1px 1px white, 2px 2px gray;
+}
+
 #tarjetas {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -207,53 +186,88 @@ main {
 
 /* pagina 2  - seccion que no comparte con las demas paginas */ 
 #seccion2 {
-  display: grid;
-  position: relative;
-  background-image: url("./multimedia/imagenes/historia-programacion.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  position: relative; /* Permite posicionar elementos hijos */
+  background-image: url("./multimedia/imagenes/historia-programacion.jpg"); /* Imagen de fondo centrada y fija */
+  background-size: cover; /* Ajusta la imagen al contenedor */
   width: 100%;
-  height: 800px; /* Ajustá esto al alto deseado */
-  
+  height: 800px; 
+  margin-bottom: 250px;;
+}
+#seccion2::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* Ocupa todo el contenedor */
+  background-color: rgba(0, 0, 0, 0.7); /* El último valor (0.7) controla la opacidad */
+  pointer-events: none;
 }
 
 #contenedorTarjetas {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
-  
-  gap: 30px;
-  align-items: start; }
+  gap: 100px;
+  margin-top: 100px;;
+  align-items: start;
+  height: 2000px;
+  perspective: 800px; /* Añade perspectiva para el efecto 3D */
+ }
 
 #contenedorTarjetas img {
   width: 50%;
   place-self: center;
-}
-.imagenTarjeta1 {
-  animation: aparecer-izq 3s ease-in-out;
 }
 
 .tarjeta-historia1 {
   grid-row: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  max-height: 800px;
-  
-    
+  opacity: 0;
+  transform: scale(1) rotateY(-90deg);
+  transition: transform 3s ease, opacity 0.7s ease;
+  transform-style: preserve-3d;
 }
-
+.tarjeta-historia1.visible {
+  opacity: 1;
+  transform: scale(1) rotateY(0deg);
+} 
+/*.primeraimagen {
+  transform: scale(1) rotateY(90deg);
+  transition: transform 3s ease, opacity 0.7s ease;
+  transform-style: preserve-3d;
+}
+.primeraimagen.visible {
+  opacity: 1;
+  transform: scale(1) rotateY(0deg);
+}*/
 .tarjeta-historia2 {
   grid-row: 2;
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
+  opacity: 0;
+  transform: scale(1) rotateY(180deg);
+  transition: transform 3s ease, opacity 0.7s ease;
+  transform-style: preserve-3d;
 }
+.tarjeta-historia2.visible {
+  opacity: 1;
+  transform: scale(1) rotateY(0deg);
+} 
 .tarjeta-historia3 {
   grid-row: 3;
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
+  opacity: 0;
+  transform: scale(1) rotateY(-90deg);
+  transition: transform 3s ease, opacity 0.7s ease;
+  transform-style: preserve-3d;
 }
+.tarjeta-historia3.visible {
+  opacity: 1;
+  transform: translateY(0);
+} 
+
+
 h3 {
   place-self: center;
 }
@@ -281,26 +295,136 @@ h3 {
   box-sizing: border-box;
   text-shadow: none;
   
-
 }
 
-/* SECCION 3: seccion que no comparte con las demas paginas */
-
-.seccion3 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  position: relative;
-  background-image: url("./multimedia/imagenes/img2.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.contenedorVideo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 100px 0px;
+      border-radius: 10px;
+      gap: 80px;
+}
+.caja {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  padding: 5px;
+  background-color: #2f3645;
+  width: 50%;
+}
+#video {
   width: 100%;
-  height: 750px; /* Ajustá esto al alto deseado */
- 
+  max-width: 800px;
+  aspect-ratio: 16/9;
+  display: block;
 }
-/* animaciones */ 
+#tiempoActual {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  
+}
+#play, #pausa {
+  padding: 10px 30px 10px 30px;
+  box-shadow: rgb(0, 0, 0) 0px 0px 10px;
+}
 
-@keyframes aparecer {
+/* PAGINA 3: seccion que no comparte con las demas paginas */
+
+#seccion3 {
+  position: relative; /* Permite posicionar elementos hijos */
+  background-image: url("./multimedia/imagenes/img2.jpg"); /* Imagen de fondo centrada y fija */
+  background-size: cover; /* Ajusta la imagen al contenedor */
+  width: 100%;
+  height: 700px; 
+}
+#seccion3::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* Ocupa todo el contenedor */
+  background-color: rgba(0, 0, 20, 0.7); /* El último valor (0.7) controla la opacidad */
+  pointer-events: none;
+}
+
+.juego {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#contenedorSuperior {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  height: fit-content; /* Ajusta la altura al contenido */
+}
+#imagen1, #imagen2, #imagen3 {
+  width: 200px;
+  height: 350px;
+  transition: transform 1.5s ease;
+}
+#imagen1 {
+  transform: rotate(8deg);
+  align-self: flex-start;
+}
+#imagen2 {
+  transform: rotate(-10deg);
+  align-self: flex-end;
+}
+#imagen3 {
+  transform: rotate(93deg); 
+}
+.sin-rotacion {
+  transform: rotate(0deg) !important;
+}
+.contenedorCajas {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  transform: scale(1);
+  transition: gap 3s ease-in-out, transform 3s ease;
+}
+.zona-soltar {
+  width: 200px;
+  height: 350px;
+  border: 2px solid #000;
+  display: flex;
+  background-color: #808080;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+#mensajeFinal {
+  text-align: center;
+  font-size: 2rem;
+  color: #2ecc71;
+  animation: aparecer 1s ease forwards;
+}
+.reiniciar {
+  
+  width: 300px;
+  background-color: #2f3645;
+  color: #fff;
+  display: block; 
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+
+/* animaciones */
+
+
+
+
+
+
+/*@keyframes aparecer {
   0%{
     color: transparent;
     transform: scale(0.01) 
@@ -308,17 +432,15 @@ h3 {
   100%{
     transform: scale(1);
   }
+}*/
+
+@keyframes aparecer {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
 }
 @keyframes aparecer-izq {
-  0%{
-    opacity: 0;
-    transform: translateX(-400px) scale(0.01);
-    
-  }
-  100%{
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
+  0%{ opacity: 0; transform: translateX(-400px) scale(0.01); }
+  100%{ opacity: 1; transform: translateX(0) scale(1);}
 }
 
 @keyframes aparecer-der {

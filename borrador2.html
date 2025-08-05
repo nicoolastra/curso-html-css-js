@@ -2,33 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="borrador.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="borrador.css">
     <title>Document</title>
 </head>
 <body>
-    <svg>  
-        <rect x="45" y="5" width="80" height="50" fill="#767d81de"
-         stroke="#2f3645" stroke-width="2"></rect>
-         <rect x="50" y="10" width="70" height="40" fill="#000000"
-         stroke="#2f3645" stroke-width="2"></rect>
-         <rect x="75" y="55" width="20" height="10" fill="#767a81de"
-         stroke="#2f3645" stroke-width="2"></rect>
-         <polygon points="50 70,120 70,130 80,40 80" fill="#767a81de"
-         stroke="#2f3645" stroke-width="2"></polygon>
-         <polygon points="55 72, 115 72, 122 78, 48 78" fill="#000000"
-         stroke="#2f3645" ></polygon>
-         <line class="lineas" x1="55" y1="19" x2="100" y2="19" 
-         stroke="transparent" stroke-width="3" class="cod"></line>
-         <line class="lineas" x1="55" y1="24" x2="100" y2="24" stroke="transparent" 
-        stroke-width="3" class="cod"></line>
-        <line class="lineas" x1="55" y1="29" x2="70" y2="29" stroke="transparent" 
-        stroke-width="3" class="cod"></line>
-        <line class="lineas" x1="55" y1="33" x2="115" y2="33" stroke="transparent" 
-        stroke-width="3" class="cod"></line>
-        <line class="lineas" x1="55" y1="38" x2="115" y2="38" stroke="transparent" 
-        stroke-width="3" class="cod"></line>
+    <h1>JUGUEMOS</h1>
+    <section class="juego">
+        <div id="contenedorSuperior">
+            <img src="./multimedia/imagenes/Rompe1.png" alt="imagen 1" id="imagen1">
+            <div class="contenedorCajas">
+                <div class="zona-soltar" id="zona1"><p>arrastre y suelte la imagen aqui</p></div>
+                <div class="zona-soltar" id="zona2"><p>arrastre y suelte la imagen aqui</p></div>
+                <div class="zona-soltar" id="zona3"><p>arrastre y suelte la imagen aqui</p></div>
+            </div>
+            <div id="mensajeFinal" style="display: none;"></div>
+            <img src="./multimedia/imagenes/rompe2.png" alt="imagen 2" id="imagen2">
+        </div>
+        <div id="contenedorInferior">
+            <img src="./multimedia/imagenes/Rompe3.png" alt="imagen 3" id="imagen3">
+        </div>
+    </section>
 
-    </svg>
+    <script>
+
+
+        document.querySelectorAll('img[id^="imagen"]').forEach(img => {
+            img.setAttribute('draggable', 'true');
+            img.addEventListener('dragstart', evento => {
+                evento.dataTransfer.setData('idImagen', img.id);
+            });
+        });
+
+        let piezasCorrectas = 0;
+        let piezasColocadas = 0;
+        
+        document.querySelectorAll('.zona-soltar').forEach((zona, i) => {
+            zona.addEventListener('dragover', evento => evento.preventDefault());
+
+            zona.addEventListener('drop', evento => {
+                const idImagen = evento.dataTransfer.getData('idImagen');
+                const imagen = document.getElementById(idImagen);
+                const zonaID = `zona${i + 1}`; // Corregido: usar backticks
+                const imagenID = `imagen${i + 1}`; // Corregido: usar backticks
+
+                if (!zona.querySelector('img')) {
+                    zona.innerHTML = '';
+                    zona.appendChild(imagen);
+                    imagen.classList.add('sin-rotacion');
+                    piezasColocadas++;
+
+                    if (zona.id === zonaID && idImagen === imagenID) {
+                        piezasCorrectas++;
+                    }
+
+                     if (piezasColocadas === 3) {
+        const contenedor = document.querySelector('.contenedorCajas');
+        contenedor.style.gap = '0px';
+        contenedor.style.transition = 'transform 0.8s ease, opacity 0.8s ease';
+        contenedor.style.transform = 'scale(1.3)';
+
+        setTimeout(() => {
+          contenedor.style.opacity = '0';
+        }, 900);
+
+        setTimeout(() => {
+          contenedor.style.display = 'none';
+          const mensajeFinal = document.getElementById('mensajeFinal');
+
+          if (piezasCorrectas === 3) {
+            mensajeFinal.innerHTML = '<h1 style="color: #2ecc71;">¡Felicitaciones! Completaste el rompecabezas 🎉</h1>';
+          } else {
+            mensajeFinal.innerHTML = '<h1 style="color: #e74c3c;">Lo sentimos, rompecabezas fallido 😔</h1>';
+          }
+
+          mensajeFinal.style.display = 'block';
+        }, 1700);
+      }
+                }
+            });
+        });
+    </script>
 </body>
 </html>

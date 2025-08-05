@@ -1,38 +1,65 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow-y: auto;
-}
-
-#seccion1 {
-  position: relative;
-  background-image: url('./multimedia/imagenes/fondo.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-  overflow-y: auto;
-  height: 100vh; /* para que tenga scroll propio */
-}
-
-
-#navegador {
-  position: sticky;
-  top: 0;
-  background-color: transparent;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  z-index: 1000;
-  height: 100px;
+.juego {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+#contenedorSuperior {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  padding: 0 30px;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  height: fit-content; /* Ajusta la altura al contenido */
+}
+#imagen1, #imagen2, #imagen3 {
+  width: 200px;
+  height: 350px;
+  transition: transform 1.5s ease;
+}
+#imagen1 {
+  transform: rotate(8deg);
+  align-self: flex-start;
+}
+#imagen2 {
+  transform: rotate(-10deg);
+  align-self: flex-end;
+}
+#imagen3 {
+  transform: rotate(93deg); 
+}
+.sin-rotacion {
+  transform: rotate(0deg) !important;
+}
+.contenedorCajas {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  transform: scale(1);
+  transition: gap 3s ease-in-out, transform 3s ease;
+}
+.zona-soltar {
+  width: 200px;
+  height: 350px;
+  border: 2px solid #000;
+  display: flex;
+  background-color: #808080;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+p {
+  color: #FFFFFF;
+}
+#mensajeFinal {
+  text-align: center;
+  font-size: 2rem;
+  color: #2ecc71;
+  animation: aparecer 1s ease forwards;
 }
 
-.menu a {
-  color: black;
-  text-decoration: none;
-  margin: 0 10px;
-  font-weight: bold;
+@keyframes aparecer {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
 }
